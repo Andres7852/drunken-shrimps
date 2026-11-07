@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drunken Shrimp | Presentation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #080d18;
+      --surface: #111b2d;
+      --surface-light: #1b2940;
+      --gold: #e9bd70;
+      --gold-light: #ffe2a8;
+      --red: #d94242;
+      --white: #f8fafc;
+      --muted: #9ba9bc;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 35px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(217, 66, 66, 0.12), transparent 35%),
+        radial-gradient(ellipse at 85% 80%, rgba(233, 189, 112, 0.10), transparent 35%),
+        var(--background);
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .presentation-container {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 680px;
+      background: linear-gradient(145deg, #142035, #0e1728 75%);
+      border: 1px solid rgba(233, 189, 112, 0.18);
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.55),
+        0 0 50px rgba(233, 189, 112, 0.04);
+    }
+
+    /* HEADER */
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 23px 35px;
+      background: rgba(7, 13, 25, 0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #d94242, #922d32);
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 5px 18px rgba(217,66,66,0.25);
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+
+    .slide-counter {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .slide-counter span {
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    /* PROGRESS BAR */
+
+    .progress-track {
+      height: 3px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transition: width 0.4s ease;
+      box-shadow: 0 0 12px rgba(233,189,112,0.5);
+    }
+
+    /* SLIDE AREA */
+
+    .slide-stage {
+      min-height: 540px;
+      padding: 55px 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-stage::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(233,189,112,0.06);
+      border-radius: 50%;
+      top: -210px;
+      right: -130px;
+      pointer-events: none;
+    }
+
+    .slide-stage::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(217,66,66,0.08);
+      border-radius: 50%;
+      bottom: -170px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .slide-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      animation: appear 0.55s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .title-decoration {
+      width: 65px;
+      height: 3px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      margin: 8px auto 35px;
+    }
+
+    /* GRID */
+
+    .content-grid {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 25px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 260px;
+      padding: 13px;
+      background: linear-gradient(145deg, rgba(36,52,76,0.95), rgba(20,31,49,0.95));
+      border: 1px solid rgba(233,189,112,0.15);
+      border-radius: 17px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(233,189,112,0.6);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.35);
+    }
+
+    .image-frame {
+      width: 100%;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 11px;
+      background: rgba(5,10,20,0.65);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 5px;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.04);
+    }
+
+    .card .keyword {
+      padding: 16px 5px 8px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.3px;
+    }
+
+    .card-line {
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 5px;
+      border-radius: 5px;
+    }
+
+    /* MAIN IMAGE */
+
+    .main-img {
+      width: 100%;
+      max-width: 620px;
+      height: 340px;
+      object-fit: contain;
+      padding: 8px;
+      background: rgba(5,10,20,0.65);
+      border: 1px solid rgba(233,189,112,0.35);
+      border-radius: 17px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .main-keyword {
+      margin-top: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      color: var(--gold-light);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* FOOTER */
+
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 35px;
+      background: rgba(7,13,25,0.65);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-text {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    .navigation {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border-radius: 9px;
+      border: 1px solid rgba(233,189,112,0.35);
+      background: transparent;
+      color: var(--gold-light);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--gold);
+      color: #111827;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233,189,112,0.2);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-btn.next {
+      background: linear-gradient(135deg, #e9bd70, #c89448);
+      color: #151b28;
+      border: none;
+    }
+
+    .nav-btn.next:hover:not(:disabled) {
+      background: var(--gold-light);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 650px) {
+      body {
+        padding: 10px;
+      }
+
+      .presentation-container {
+        min-height: 600px;
+        border-radius: 15px;
+      }
+
+      .top-bar {
+        padding: 17px;
+      }
+
+      .brand-name {
+        font-size: 12px;
+      }
+
+      .slide-stage {
+        min-height: 480px;
+        padding: 35px 15px;
+      }
+
+      .slide-title {
+        font-size: 32px;
+      }
+
+      .content-grid {
+        gap: 15px;
+      }
+
+      .card {
+        width: min(100%, 260px);
+      }
+
+      .image-frame {
+        height: 180px;
+      }
+
+      .main-img {
+        height: auto;
+        max-height: 320px;
+      }
+
+      .bottom-bar {
+        padding: 17px;
+        gap: 10px;
+      }
+
+      .footer-text {
+        display: none;
+      }
+
+      .navigation {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-btn {
+        padding: 11px 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+
+    <header class="top-bar">
+
+      <div class="brand">
+        <div class="brand-icon">中</div>
+
+        <div>
+          <div class="brand-name">CULINARY DISCOVERIES</div>
+          <div class="brand-subtitle">CHINESE CUISINE</div>
+        </div>
+      </div>
+
+      <div class="slide-counter" id="slideCounter">
+        <span>01</span> / 05
+      </div>
+
+    </header>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <main class="slide-stage" id="slideStage"></main>
+
+    <footer class="bottom-bar">
+
+      <div class="footer-text">
+        A JOURNEY THROUGH CHINESE FOOD
+      </div>
+
+      <div class="navigation">
+
+        <button class="nav-btn" id="btnPrev" onclick="prevSlide()">
+          ← Previous
+        </button>
+
+        <button class="nav-btn next" id="btnNext" onclick="nextSlide()">
+          Next →
+        </button>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script>
+
+    const slides = [
+
+      {
+        title: "Drunken Shrimp",
+        label: "A Traditional Chinese Dish",
+        type: "single",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuLBtYcwlPd60RYkiJ8NNKl3EDZBSpO9a4nGOuSN8hHugl_0fnwXSgcvk&s=10",
+        keyword: "Drunken Shrimp (醉虾)"
+      },
+
+      {
+        title: "Location",
+        label: "Discover Its Origins",
+        type: "grid",
+        cards: [
+          {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2UAqK6Lr21IY1l6CBZgLuyRvt4MHKxPuEnHJn-M5hSQ&s",
+            keyword: "China"
+          },
+          {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOeI1HBz3gNSYE4SyXSufZaUZAA_HRhwSRslNhIPwtUTi7yXPW8VEpAb8&s=10",
+            keyword: "Shanghai"
+          }
+        ]
+      },
+
+      {
+        title: "Celebrations",
+        label: "Traditions and Culture",
+        type: "grid",
+        cards: [
+          {
+            img: "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2024-02/240207-lunar-new-year-festival-san-francisco-vl-235p-332c2a.jpg",
+            keyword: "Chinese New Year"
+          },
+          {
+            img: "https://www.china-admissions.com/wp-content/uploads/2018/12/chinese-spring-festival-1200x675.png",
+            keyword: "Spring Festival"
+          }
+        ]
+      },
+
+      {
+        title: "Main Ingredients",
+        label: "What Makes This Dish Special",
+        type: "grid",
+        cards: [
+          {
+            img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400",
+            keyword: "Fresh Shrimp"
+          },
+          {
+            img: "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=400",
+            keyword: "Baijiu Liquor"
+          },
+          {
+            img: "https://images.immediate.co.uk/production/volatile/sites/30/2013/06/ginger-80e324d-scaled.jpg?resize=1200%2C630",
+            keyword: "Ginger"
+          }
+        ]
+      },
+      {
+        title: "Preparation",
+        label: "How This Dish Is Prepared",
+        type: "grid",
+        cards: [
+          {
+            img: "https://upload.wikimedia.org/wikipedia/commons/6/62/Drunken_shrimp_alive.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+            keyword: "Prepare the Sauce"
+          },
+          {
+            img: "https://cdn-akamai.lkk.com/-/media/recipe-drunken-shrimp.jpg?bc=white&hash=7E9B479F59464B37282B0C383AD912B9&v=639289932959781759",
+            keyword: "Serve and Garnish"
+          }
+        ]
+      },
+      {
+        title: "Final Dish",
+        label: "A Taste of Chinese Tradition",
+        type: "single_no_text",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjI7IJ653YBNxnh-nFKDpDT0x-xIKU3f58MkgEGIMJmou5NCwknNGLgSw&s=10"
+      }
+
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide() {
+
+      const slide = slides[currentSlide];
+      const stage = document.getElementById("slideStage");
+
+      let content = `
+        <div class="slide-content">
+
+          <div class="section-label">
+            ${slide.label}
+          </div>
+
+          <h2 class="slide-title">
+            ${slide.title}
+          </h2>
+
+          <div class="title-decoration"></div>
+      `;
+
+      if (slide.type === "single") {
+
+        content += `
+          <img
+            class="main-img"
+            src="${slide.img}"
+            alt="${slide.keyword}"
+          >
+
+          <div class="main-keyword">
+            ${slide.keyword}
+          </div>
+        `;
+
+      } else if (slide.type === "single_no_text") {
+
+        content += `
+          <img
+            class="main-img"
+            src="${slide.img}"
+            alt="${slide.title}"
+          >
+        `;
+
+      } else {
+
+        let cardsHTML = slide.cards.map(c => `
+          <div class="card">
+
+            <div class="image-frame">
+              <img
+                src="${c.img}"
+                alt="${c.keyword}"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="keyword">
+              ${c.keyword}
+            </div>
+
+            <div class="card-line"></div>
+
+          </div>
+        `).join("");
+
+        content += `
+          <div class="content-grid">
+            ${cardsHTML}
+          </div>
+        `;
+
+      }
+
+      content += `</div>`;
+
+      stage.innerHTML = content;
+
+      document.getElementById("slideCounter").innerHTML = `
+        <span>${String(currentSlide + 1).padStart(2, "0")}</span>
+        / ${String(slides.length).padStart(2, "0")}
+      `;
+
+      document.getElementById("progressFill").style.width =
+        `${((currentSlide + 1) / slides.length) * 100}%`;
+
+      document.getElementById("btnPrev").disabled =
+        currentSlide === 0;
+
+      document.getElementById("btnNext").disabled =
+        currentSlide === slides.length - 1;
+
+    }
+
+    function nextSlide() {
+
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        renderSlide();
+      }
+
+    }
+
+    function prevSlide() {
+
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide();
+      }
+
+    }
+
+    document.addEventListener("keydown", function(event) {
+
+      if (event.key === "ArrowRight") {
+        nextSlide();
+      }
+
+      if (event.key === "ArrowLeft") {
+        prevSlide();
+      }
+
+    });
+
+    renderSlide();
+
+  </script>
+
+</body>
+</html>
